@@ -9,6 +9,12 @@ import yaml
 
 
 def pytest_addoption(parser):
+    try:
+        # test if the bundled pytest asdf plugin knows to skip itself
+        from pytest_asdf.plugin import HAS_NEW_PLUGIN
+    except ImportError:
+        return
+
     parser.addini("asdf_schema_root", "Root path indicating where schemas are stored")
     parser.addini("asdf_schema_skip_names", "Base names of files to skip in schema tests")
     parser.addini(
@@ -233,6 +239,12 @@ def _parse_test_list(content):
 
 
 def pytest_collect_file(file_path, parent):
+    try:
+        # test if the bundled pytest asdf plugin knows to skip itself
+        from pytest_asdf.plugin import HAS_NEW_PLUGIN
+    except ImportError:
+        return
+
     if not (parent.config.getini("asdf_schema_tests_enabled") or parent.config.getoption("asdf_tests")):
         return None
 
