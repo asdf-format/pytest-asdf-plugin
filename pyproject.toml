@@ -15,7 +15,7 @@ dynamic = [
   'version',
 ]
 dependencies = [
-  "asdf",
+  "asdf @ git+https://github.com/braingram/asdf.git@deprecate_pytest_asdf",
   "pytest>=8",
 ]
 [project.urls]
@@ -24,7 +24,7 @@ dependencies = [
 'tracker' = 'https://github.com/asdf-format/pytest-asdf-plugin/issues'
 
 [project.entry-points]
-pytest11 = {asdf_schema_tester = 'pytest_asdf_plugin.plugin'}
+pytest11 = {pytest_asdf_plugin = 'pytest_asdf_plugin.plugin'}
 
 [build-system]
 build-backend = 'setuptools.build_meta'
@@ -55,9 +55,8 @@ force-exclude = '''
 '''
 
 [tool.pytest.ini_options]
-testpaths = ['asdf', 'docs']
+testpaths = ['tests']
 minversion = 4.6
-remote_data_strict = true
 filterwarnings = [
     'error',
 ]
