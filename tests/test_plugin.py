@@ -5,6 +5,7 @@ def test_example(pytester):
         [tool.pytest.ini_options]
         asdf_schema_root = 'resources/schemas'
         asdf_schema_tests_enabled = 'true'
+        asdf_schema_ignore_unrecognized_tag = 'true'
     """
     )
     result = pytester.runpytest()
