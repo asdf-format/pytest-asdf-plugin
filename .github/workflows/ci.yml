@@ -41,22 +41,11 @@ jobs:
       # Any env name which does not start with `pyXY` will use this Python version.
       default_python: '3.10'
       envs: |
-        - linux: coverage
-          name: Python 3.13 coverage
-          python-version: 3.13
-        - linux: coverage
-          name: Python 3.12 coverage
-          python-version: 3.12
-        - linux: coverage
-          name: Python 3.11 coverage
-          python-version: 3.11
-        - linux: coverage
-          name: Python 3.10 coverage
-          python-version: 3.10
-        - linux: coverage
-          name: Python 3.9 coverage
-          python-version: 3.9
-      # coverage: codecov
+        - linux: py313
+        - linux: py312
+        - linux: py311
+        - linux: py310
+        - linux: py39
 
   dev:
     needs: [core]
@@ -66,8 +55,7 @@ jobs:
       # Any env name which does not start with `pyXY` will use this Python version.
       default_python: '3.11'
       envs: |
-        - linux: py314-coverage
+        - linux: py314
           python-version: '3.14-dev'
         # separate pytest so a failure here doesn't cause the whole suite to fail
-        - linux: py311-coverage-pytestdev
-      # coverage: codecov
+        - linux: py311-pytestdev
