@@ -35,9 +35,44 @@ def test_asdf_tests_argument(pytester):
     result.assert_outcomes(passed=PASSES, failed=FAILURES)
 
 
-# asdf_schema_skip_examples  (test schema but not examples?, nothing uses this)
-# asdf_schema_validate_default (nothing uses this...)
-# asdf_schema_ignore_unrecognized_tag (why is this a schema testing option?)
+@pytest.mark.parametrize(
+    "skip_cfg, passes, failures",
+    (("passing-1.0.0", PASSES - 3, FAILURES),),
+)
+def test_skip_examples(pytester, skip_cfg, passes, failures):
+    pytester.copy_example("example")
+    pytester.makepyprojecttoml(
+        f"""
+        [tool.pytest.ini_options]
+        asdf_schema_root = 'resources/schemas'
+        asdf_schema_tests_enabled = 'true'
+        asdf_schema_ignore_unrecognized_tag = 'true'
+        asdf_schema_skip_examples = "{skip_cfg}"
+    """
+    )
+    result = pytester.runpytest()
+
+    result.assert_outcomes(passed=passes, failed=failures)
+
+
+@pytest.mark.parametrize(
+    "skip_cfg, passes, failures",
+    (("passing-1.0.0", PASSES - 4, FAILURES),),
+)
+def test_skip_names(pytester, skip_cfg, passes, failures):
+    pytester.copy_example("example")
+    pytester.makepyprojecttoml(
+        f"""
+        [tool.pytest.ini_options]
+        asdf_schema_root = 'resources/schemas'
+        asdf_schema_tests_enabled = 'true'
+        asdf_schema_ignore_unrecognized_tag = 'true'
+        asdf_schema_skip_names = "{skip_cfg}"
+    """
+    )
+    result = pytester.runpytest()
+
+    result.assert_outcomes(passed=passes, failed=failures)
 
 
 @pytest.mark.parametrize(
