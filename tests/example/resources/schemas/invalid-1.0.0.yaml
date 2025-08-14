@@ -3,18 +3,8 @@
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 id: "asdf://asdf-format.org/pytest_asdf_plugin/schemas/invalid-1.0.0"
 
-title: A test schema with a few failing examples
+title: An invalid schema
 
-examples:
-  -
-    - "First example - invalid"
-    - |
-        !core/ndarray-1.0.0
-          a
-  -
-    - "Second example - invalid"
-    - asdf-standard-1.5.0
-    - |
-        !core/ndarray-1.0.0
-          b
+properties:
+  - "should not be a list"
 ...

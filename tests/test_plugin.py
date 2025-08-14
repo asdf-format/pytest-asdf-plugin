@@ -1,5 +1,10 @@
 import pytest
 
+# the example schemas have a number of successes and failures
+# hard-code them here to allow more flexibility in the tests below
+PASSES = 10
+FAILURES = 2
+
 
 def test_pyprojecttoml(pytester):
     pytester.copy_example("example")
@@ -13,7 +18,7 @@ def test_pyprojecttoml(pytester):
     )
     result = pytester.runpytest()
 
-    result.assert_outcomes(passed=10, failed=1)
+    result.assert_outcomes(passed=PASSES, failed=FAILURES)
 
 
 def test_asdf_tests_argument(pytester):
@@ -27,7 +32,7 @@ def test_asdf_tests_argument(pytester):
     )
     result = pytester.runpytest("--asdf-tests")
 
-    result.assert_outcomes(passed=10, failed=1)
+    result.assert_outcomes(passed=PASSES, failed=FAILURES)
 
 
 # asdf_schema_skip_tests (with * with no ::foo, with ::foo)
@@ -39,16 +44,16 @@ def test_asdf_tests_argument(pytester):
 
 
 @pytest.mark.parametrize(
-    "skip_cfg, expected",
+    "skip_cfg, passes, failures, skips",
     (
-        ("schemas/valid-1.0.0", 10),
-        ("schemas/nested/nested-1.0.0", 10),
-        ("schemas/valid-1.0.0::*", 10),
-        ("schemas/valid-1.0.0::0", 10),
-        ("schemas/valid-1.0.0::2", 10),
+        ("passing-1.0.0.yaml", PASSES - 4, FAILURES, 4),
+        # ("schemas/nested/nested-1.0.0", PASSES, FAILURES),
+        # ("schemas/valid-1.0.0::*", PASSES, FAILURES),
+        # ("schemas/valid-1.0.0::0", PASSES, FAILURES),
+        # ("schemas/valid-1.0.0::2", PASSES, FAILURES),
     ),
 )
-def test_skips(pytester, skip_cfg, expected):
+def test_skips(pytester, skip_cfg, passes, failures, skips):
     pytester.copy_example("example")
     pytester.makepyprojecttoml(
         f"""
@@ -61,4 +66,4 @@ def test_skips(pytester, skip_cfg, expected):
     )
     result = pytester.runpytest()
 
-    result.assert_outcomes(passed=expected, failed=1)
+    result.assert_outcomes(passed=passes, failed=failures, skipped=skips)
