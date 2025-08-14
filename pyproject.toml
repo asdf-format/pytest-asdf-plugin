@@ -55,6 +55,7 @@ force-exclude = '''
 '''
 
 [tool.pytest.ini_options]
+pytester_example_dir = 'tests'
 testpaths = ['tests']
 minversion = 4.6
 filterwarnings = [
@@ -87,21 +88,3 @@ extend-ignore = [
 
 [tool.codespell]
 skip="*.pdf,*.asdf,.tox,build,./tags,.git,docs/_build"
-ignore-words-list="""
-fo,afile,
-"""
-
-[tool.towncrier]
-filename = "CHANGES.rst"
-directory = "changes"
-package = "pytest_asdf_plugin"
-title_format = "{version} ({project_date})"
-ignore = [".gitkeep"]
-wrap = true
-issue_format = "`#{issue} <https://github.com/asdf-format/pytest-asdf-plugin/pull/{issue}>`_"
-
-[tool.towncrier.fragment.feature]
-[tool.towncrier.fragment.bugfix]
-[tool.towncrier.fragment.doc]
-[tool.towncrier.fragment.removal]
-[tool.towncrier.fragment.general]
