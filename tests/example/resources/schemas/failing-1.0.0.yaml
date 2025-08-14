@@ -8,13 +8,14 @@ title: A test schema with a few failing examples
 examples:
   -
     - "First example - invalid"
+    - asdf-standard-1.6.0
     - |
-        !core/ndarray-1.0.0
+        !core/integer-1.1.0
           a
   -
     - "Second example - invalid"
     - asdf-standard-1.5.0
     - |
-        !core/ndarray-1.0.0
+        !core/integer-1.0.0
           b
 ...

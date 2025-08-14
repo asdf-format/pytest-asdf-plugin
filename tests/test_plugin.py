@@ -2,8 +2,8 @@ import pytest
 
 # the example schemas have a number of successes and failures
 # hard-code them here to allow more flexibility in the tests below
-PASSES = 10
-FAILURES = 2
+PASSES = 9
+FAILURES = 3
 
 
 def test_pyprojecttoml(pytester):
@@ -47,10 +47,10 @@ def test_asdf_tests_argument(pytester):
     "skip_cfg, passes, failures, skips",
     (
         ("passing-1.0.0.yaml", PASSES - 4, FAILURES, 4),
-        # ("schemas/nested/nested-1.0.0", PASSES, FAILURES),
-        # ("schemas/valid-1.0.0::*", PASSES, FAILURES),
-        # ("schemas/valid-1.0.0::0", PASSES, FAILURES),
-        # ("schemas/valid-1.0.0::2", PASSES, FAILURES),
+        ("passing-1.0.0.yaml::*", PASSES - 4, FAILURES, 4),
+        ("passing-1.0.0.yaml::test_example_0", PASSES - 1, FAILURES, 1),
+        ("passing-1.0.0.yaml::test_example_1", PASSES - 1, FAILURES, 1),
+        ("nested/nested-1.0.0.yaml", PASSES - 4, FAILURES, 4),
     ),
 )
 def test_skips(pytester, skip_cfg, passes, failures, skips):
@@ -61,7 +61,7 @@ def test_skips(pytester, skip_cfg, passes, failures, skips):
         asdf_schema_root = 'resources/schemas'
         asdf_schema_tests_enabled = 'true'
         asdf_schema_ignore_unrecognized_tag = 'true'
-        asdf_schema_skip_tests = '{skip_cfg}'
+        asdf_schema_skip_tests = "{skip_cfg}"
     """
     )
     result = pytester.runpytest()
