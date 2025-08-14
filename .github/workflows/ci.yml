@@ -46,6 +46,7 @@ jobs:
         - linux: py311
         - linux: py310
         - linux: py39
+        - linux: py312-oldasdf
 
   dev:
     needs: [core]
