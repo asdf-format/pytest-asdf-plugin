@@ -1,4 +1,3 @@
-exclude: "asdf/(_extern||_jsonschema)/.*"
 repos:
 
 - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -40,7 +39,6 @@ repos:
   rev: '1.0.1'
   hooks:
     - id: flynt
-      exclude: "asdf/(extern||_jsonschema)/.*"
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
   rev: 'v0.11.6'

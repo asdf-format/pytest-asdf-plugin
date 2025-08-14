@@ -11,7 +11,7 @@ import yaml
 def pytest_addoption(parser):
     try:
         # test if the bundled pytest asdf plugin knows to skip itself
-        from pytest_asdf.plugin import HAS_NEW_PLUGIN
+        from pytest_asdf.plugin import HAS_NEW_PLUGIN  # noqa: F401
     except ImportError:
         return
 
@@ -241,7 +241,7 @@ def _parse_test_list(content):
 def pytest_collect_file(file_path, parent):
     try:
         # test if the bundled pytest asdf plugin knows to skip itself
-        from pytest_asdf.plugin import HAS_NEW_PLUGIN
+        from pytest_asdf.plugin import HAS_NEW_PLUGIN  # noqa: F401
     except ImportError:
         return
 

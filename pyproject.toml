@@ -86,7 +86,7 @@ extend-ignore = [
 ]
 
 [tool.codespell]
-skip="*.pdf,*.asdf,.tox,asdf/_extern,asdf/_jsonschema,build,./tags,.git,docs/_build"
+skip="*.pdf,*.asdf,.tox,build,./tags,.git,docs/_build"
 ignore-words-list="""
 fo,afile,
 """
