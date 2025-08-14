@@ -22,7 +22,7 @@ examples:
            [0, 1, 0],
            [0, 0, 1]]
   -
-    - "Third example - invalid"
+    - "Third example - missing tag"
     - asdf-standard-1.6.0
     - |
         !core/ndarray-1.0.0
