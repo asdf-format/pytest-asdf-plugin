@@ -8,6 +8,7 @@ repos:
     - id: check-case-conflict
     - id: check-yaml
       args: ["--unsafe"]
+      exclude: "tests/example/error-1.0.0"
     - id: check-toml
     - id: check-merge-conflict
     - id: check-symlinks

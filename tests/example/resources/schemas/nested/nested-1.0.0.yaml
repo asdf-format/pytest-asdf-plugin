@@ -1,7 +1,7 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "asdf://asdf-format.org/pytest_asdf_plugin/schemas/bar-1.0.0"
+id: "asdf://asdf-format.org/pytest_asdf_plugin/schemas/nested-1.0.0"
 
 title: A test schema with a few examples
 
