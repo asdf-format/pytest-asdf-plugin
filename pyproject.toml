@@ -1,0 +1,108 @@
+[project]
+name = "pytest-asdf-plugin"
+description = "Pytest plugin for testing ASDF schemas"
+readme = 'README.rst'
+license-files = ['LICENSE']
+authors = [{ name = 'The ASDF Developers', email = 'help@stsci.edu' }]
+requires-python = '>=3.9'
+classifiers = [
+  'Development Status :: 5 - Production/Stable',
+  'Programming Language :: Python',
+  'Programming Language :: Python :: 3',
+  'Framework :: Pytest',
+]
+dynamic = [
+  'version',
+]
+dependencies = [
+  "asdf",
+  "pytest>=8",
+]
+[project.urls]
+'documentation' = 'https://pytest-asdf-plugin.readthedocs.io/en/stable/'
+'repository' = 'https://github.com/asdf-format/pytest-asdf-plugin'
+'tracker' = 'https://github.com/asdf-format/pytest-asdf-plugin/issues'
+
+[project.entry-points]
+pytest11 = {asdf_schema_tester = 'pytest_asdf_plugin.plugin'}
+
+[build-system]
+build-backend = 'setuptools.build_meta'
+requires = [
+  "setuptools>=60",
+  "setuptools_scm[toml]>=8",
+  "wheel",
+]
+
+[tool.setuptools_scm]
+version_file = "src/pytest_asdf_plugin/_version.py"
+
+[tool.black]
+line-length = 120
+force-exclude = '''
+^/(
+  (
+      \.eggs
+    | \.git
+    | \.pytest_cache
+    | \.tox
+    | asdf/_extern
+    | asdf/_jsonschema
+    | build
+    | dist
+  )/
+)
+'''
+
+[tool.pytest.ini_options]
+testpaths = ['asdf', 'docs']
+minversion = 4.6
+remote_data_strict = true
+filterwarnings = [
+    'error',
+]
+addopts = [
+    '--color=yes',
+    '-rsxfE',
+    '-p no:legacypath',
+]
+
+[tool.ruff]
+target-version = "py38"
+line-length = 120
+
+[tool.ruff.lint]
+select = [
+    # minimal set to match pre-ruff behavior
+    "E", # pycodestyle
+    "F", # pyflakes, autoflake
+    "I", # isort
+    "S", # bandit
+    "UP", # pyupgrade
+    "RUF",  # ruff specific, includes yesqa
+]
+extend-ignore = [
+    "S310", # URL open for permitted schemes
+    "RUF012",  # mutable-class-default (typing related)
+]
+
+[tool.codespell]
+skip="*.pdf,*.asdf,.tox,asdf/_extern,asdf/_jsonschema,build,./tags,.git,docs/_build"
+ignore-words-list="""
+fo,afile,
+"""
+
+[tool.towncrier]
+filename = "CHANGES.rst"
+directory = "changes"
+package = "pytest_asdf_plugin"
+title_format = "{version} ({project_date})"
+ignore = [".gitkeep"]
+wrap = true
+issue_format = "`#{issue} <https://github.com/asdf-format/pytest-asdf-plugin/pull/{issue}>`_"
+
+[tool.towncrier.fragment.feature]
+[tool.towncrier.fragment.bugfix]
+[tool.towncrier.fragment.doc]
+[tool.towncrier.fragment.removal]
+[tool.towncrier.fragment.general]
