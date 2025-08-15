@@ -67,6 +67,9 @@ filterwarnings = [
     'error',
 ]
 addopts = [
+    # numpy does not like the reimports done by pytester
+    # so run pytester in a subprocess
+    '--runpytest=subprocess',
     '--color=yes',
     '-rsxfE',
     '-p no:legacypath',
