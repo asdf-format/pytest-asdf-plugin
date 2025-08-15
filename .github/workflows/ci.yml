@@ -72,7 +72,6 @@ jobs:
         - linux: downstream-wcs
         - linux: downstream-coordinates
         - linux: downstream-astropy
-        - linux: downstream-rad
         - linux: downstream-stdatamodels
         - linux: downstream-sunpy
         - linux: downstream-dkist
