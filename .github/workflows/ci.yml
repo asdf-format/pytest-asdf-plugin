@@ -43,9 +43,6 @@ jobs:
       envs: |
         - linux: py313
         - linux: py312
-        - linux: py311
-        - linux: py310
-        - linux: py39
         - linux: py312-oldasdf
 
   dev:
@@ -59,4 +56,4 @@ jobs:
         - linux: py314
           python-version: '3.14-dev'
         # separate pytest so a failure here doesn't cause the whole suite to fail
-        - linux: py311-pytestdev
+        - linux: py312-pytestdev
