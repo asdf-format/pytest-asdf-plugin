@@ -1,18 +1,18 @@
 import os
 import pathlib
 from dataclasses import dataclass
+from importlib.metadata import version
 
 import pytest
 import yaml
 
-# Avoid all imports of asdf at this level in order to avoid circular imports
+# check if the asdf version has the required check for
+# the non-bunbled pytest plugin (this package)
+HAS_PLUGIN_CHECK = version("asdf") >= "4.4.0"
 
 
 def pytest_addoption(parser):
-    try:
-        # test if the bundled pytest asdf plugin knows to skip itself
-        from pytest_asdf.plugin import HAS_NEW_PLUGIN  # noqa: F401
-    except ImportError:
+    if not HAS_PLUGIN_CHECK:
         return
 
     parser.addini("asdf_schema_root", "Root path indicating where schemas are stored")
@@ -239,10 +239,7 @@ def _parse_test_list(content):
 
 
 def pytest_collect_file(file_path, parent):
-    try:
-        # test if the bundled pytest asdf plugin knows to skip itself
-        from pytest_asdf.plugin import HAS_NEW_PLUGIN  # noqa: F401
-    except ImportError:
+    if not HAS_PLUGIN_CHECK:
         return
 
     if not (parent.config.getini("asdf_schema_tests_enabled") or parent.config.getoption("asdf_tests")):
