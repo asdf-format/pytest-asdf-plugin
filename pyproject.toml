@@ -16,7 +16,7 @@ dynamic = [
 ]
 dependencies = [
   "asdf",
-  "pytest>=8",
+  "pytest>=7",
 ]
 [project.urls]
 'documentation' = 'https://pytest-asdf-plugin.readthedocs.io/en/stable/'
