@@ -15,12 +15,7 @@ dynamic = [
   'version',
 ]
 dependencies = [
-# Using a branch so that the "bundled" plugin from asdf doesn't cause
-# this "external" plugin from being registered. Once we have a released
-# version of asdf that contains the code needed to detect the "external"
-# plugin we can set this to a real asdf version (which will be required
-# to release this package to pypi).
-  "asdf @ git+https://github.com/braingram/asdf.git@deprecate_pytest_asdf",
+  "asdf",
   "pytest>=8",
 ]
 [project.urls]
