@@ -38,9 +38,8 @@ jobs:
     uses: OpenAstronomy/github-actions-workflows/.github/workflows/tox.yml@v2
     with:
       submodules: false
-      # Any env name which does not start with `pyXY` will use this Python version.
-      default_python: '3.12'
       envs: |
+        - linux: py314
         - linux: py313
         - linux: py312
         - linux: py312-oldasdf
@@ -50,13 +49,9 @@ jobs:
     uses: OpenAstronomy/github-actions-workflows/.github/workflows/tox.yml@v2
     with:
       submodules: false
-      # Any env name which does not start with `pyXY` will use this Python version.
-      default_python: '3.12'
       envs: |
-        - linux: py314
-          python-version: '3.14-dev'
         # separate pytest so a failure here doesn't cause the whole suite to fail
-        - linux: py312-pytestdev
+        - linux: py313-pytestdev
 
   downstream:
     if: (!contains(github.event.pull_request.labels.*.name, 'Skip Downstream'))
@@ -65,7 +60,7 @@ jobs:
     with:
       submodules: false
       # Any env name which does not start with `pyXY` will use this Python version.
-      default_python: '3.12'
+      default_python: '3.13'
       envs: |
         - linux: downstream-standard
         - linux: downstream-transform
