@@ -115,6 +115,8 @@ class AsdfSchemaFile(pytest.File):
 
 
 class AsdfSchemaItem(pytest.Item):
+    _parallel_custom_item = ()
+
     @classmethod
     def from_parent(cls, parent, schema_path, validate_default=True, **kwargs):
         if hasattr(super(), "from_parent"):
@@ -181,6 +183,8 @@ class SchemaExample:
 
 
 class AsdfSchemaExampleItem(pytest.Item):
+    _parallel_custom_item = ()
+
     @classmethod
     def from_parent(
         cls,
