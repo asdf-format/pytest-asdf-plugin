@@ -115,6 +115,8 @@ class AsdfSchemaFile(pytest.File):
 
 
 class AsdfSchemaItem(pytest.Item):
+    # Required to avoid warnings from `pytest-run-parallel` plugin
+    # See: https://github.com/Quansight-Labs/pytest-run-parallel/blob/9bb1215a3479e3f3d91fb0eacbd17c71dcdb08a2/src/pytest_run_parallel/plugin.py#L265
     _parallel_custom_item = ()
 
     @classmethod
@@ -183,6 +185,8 @@ class SchemaExample:
 
 
 class AsdfSchemaExampleItem(pytest.Item):
+    # Required to avoid warnings from `pytest-run-parallel` plugin
+    # See: https://github.com/Quansight-Labs/pytest-run-parallel/blob/9bb1215a3479e3f3d91fb0eacbd17c71dcdb08a2/src/pytest_run_parallel/plugin.py#L265
     _parallel_custom_item = ()
 
     @classmethod
