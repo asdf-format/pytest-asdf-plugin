@@ -43,6 +43,7 @@ jobs:
         - linux: py313
         - linux: py312
         - linux: py312-oldasdf
+        - linux: py314-pytest-plugin-compat
 
   dev:
     needs: [core]
