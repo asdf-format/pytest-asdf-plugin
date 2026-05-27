@@ -1,3 +1,5 @@
+import importlib.util
+
 import pytest
 
 # the example schemas have a number of successes and failures
@@ -101,6 +103,13 @@ def test_skips(pytester, skip_cfg, passes, failures, skips):
     result.assert_outcomes(passed=passes, failed=failures, skipped=skips)
 
 
+@pytest.mark.skipif(
+    importlib.util.find_spec("pytest_run_parallel") is not None,
+    reason=(
+        "pytest-run-parallel causes xpass results to be incorrectly reported "
+        "(https://github.com/Quansight-Labs/pytest-run-parallel/issues/180)"
+    ),
+)
 @pytest.mark.parametrize(
     "xfail_cfg, xpasses, xfailures",
     (
