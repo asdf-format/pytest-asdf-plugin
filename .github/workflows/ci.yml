@@ -35,7 +35,7 @@ jobs:
     - uses: pre-commit/action@v3.0.1
   core:
     needs: [pre-commit]
-    uses: OpenAstronomy/github-actions-workflows/.github/workflows/tox.yml@v2
+    uses: OpenAstronomy/github-actions-workflows/.github/workflows/tox.yml@v3
     with:
       submodules: false
       envs: |
@@ -47,7 +47,7 @@ jobs:
 
   dev:
     needs: [core]
-    uses: OpenAstronomy/github-actions-workflows/.github/workflows/tox.yml@v2
+    uses: OpenAstronomy/github-actions-workflows/.github/workflows/tox.yml@v3
     with:
       submodules: false
       envs: |
@@ -57,7 +57,7 @@ jobs:
   downstream:
     if: (!contains(github.event.pull_request.labels.*.name, 'Skip Downstream'))
     needs: [core]
-    uses: OpenAstronomy/github-actions-workflows/.github/workflows/tox.yml@v2
+    uses: OpenAstronomy/github-actions-workflows/.github/workflows/tox.yml@v3
     with:
       submodules: false
       # Any env name which does not start with `pyXY` will use this Python version.
